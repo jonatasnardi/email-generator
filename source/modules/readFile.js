@@ -7,14 +7,10 @@ exports.fileToBeRead = function(file, callback) {
 
 	fs.readFile(file, function ( err, logData ) {
 		
-		// Se um erro ocorrer, irá ser lançada
-		// a exceção e a app será encerrada
 		if ( err ) throw err;
 
-		// logData é um Buffer, converta-o para string
 		var text = logData.toString();
 
-		// Criando uma instância do objeto Parser
 		var parser = new Parser();
 
 		var greeting = greetingClient(),
@@ -49,9 +45,7 @@ exports.fileToBeRead = function(file, callback) {
 			var message =   br + phrase + '\r\n\n',
 				farewell = br + bye;
 
-		// Chame a função parse
 		var finalMessage =  greeting + message + ossString + farewell;
-		// { A: 2, B: 14, C: 6 }
 		return callback(finalMessage);
 	});
 

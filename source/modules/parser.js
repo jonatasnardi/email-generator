@@ -1,16 +1,12 @@
-// Construtor Parser
-
-
 var Parser = function () {
 
 };
 
-// Analisa o texto especificado
 Parser.prototype.parse = function (text) {
 	
 	var results = {};
 
-	// Quebra o arquivo em linhas
+
 	var lines = text;
 
 	var count = text.split('\n');
@@ -45,5 +41,4 @@ Parser.prototype.parse = function (text) {
 	return linesCount;
 };
 
-// Exportando o construtor Parser neste módulo
 module.exports = Parser;

@@ -1,9 +1,7 @@
-// Requisitando o arquivo parser.js
 var Parser = require('./modules/parser');
 var ReadFile = require('./modules/readFile');
-
-// Carregandoo módulo fs (filesystem)
 var fs = require('fs');
+
 var messageFinal;
 
 var message = ReadFile.fileToBeRead('OSs.txt', function(message){ 
