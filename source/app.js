@@ -7,9 +7,7 @@ var fs = require('fs');
 var messageFinal;
 
 var message = ReadFile.fileToBeRead('OSs.txt', function(message){ 
-    var baseDir = 'C:/repositories/jonatas-projects/node-read-file/';
-
-    fs.writeFile(baseDir + "copy-and-email.txt", message, function(err) {
+    fs.writeFile(__dirname + "/copy-and-email.txt", message, function(err) {
 	    if(err) {
 	        return console.log(err);
 	    }
