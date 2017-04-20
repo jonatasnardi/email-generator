@@ -1,9 +1,24 @@
+var fs = require('fs');
+
+function historic(callback) {
+	fs.readFile(__dirname + '/../historic.txt', function (err, data) {
+		if (err) throw err;
+		var text = data.toString();
+		text = text.split('\n');
+		callback(text);
+	});
+};
+
 var Parser = function () {
 
 };
 
-Parser.prototype.parse = function (text) {
+Parser.prototype.receiver = function(linesCount) {
 	
+	return linesCount;
+}
+
+Parser.prototype.parse = function(text) {
 	var results = {};
 
 
@@ -38,7 +53,31 @@ Parser.prototype.parse = function (text) {
 	}
 
 	var linesCount = [oss, oss.length];
+
+	var self = this;
+
+	historic(function(result) {
+	    for (var i = 0; i < oss.length; i++) {
+	    	for (var j = 0; j < result.length; j++) {
+	    		if(oss[i] == result[j]) {	    			
+	    			if (i > -1) {
+					    oss.splice(i, 1);
+					}
+	    		}
+	    	}
+	    }
+	    linesCount = [oss, oss.length];	    
+	    
+	    self.receiver(linesCount);
+
+	});
+	// console.log(oss);
+	
 	return linesCount;
-};
+	
+}
+
+
+
 
 module.exports = Parser;
